@@ -1,0 +1,25 @@
+name: Deploy web verison
+
+on:
+  push:
+    branches:
+      - task1
+
+jobs:
+  build:
+    runs-on: 'macos-latest'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '2.5.3'
+      - run: flutter pub get
+      - run: flutter test
+      - run: flutter build web --base-href /fmp/
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          user_name: 'Ivan Kalinin'
+          user_email: 'ivan_kalinin1@epam.com'
+          github_token: ${{ secrets.TOKEN }}
+          publish_dir: ./build/web
