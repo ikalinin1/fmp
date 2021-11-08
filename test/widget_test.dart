@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:fmp/main.dart';
 import 'package:fmp/task1/my_app.dart';
 
 void main() {
