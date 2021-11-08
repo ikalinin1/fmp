@@ -31,23 +31,23 @@ class LinksRollPage extends StatefulWidget {
 
 class _LinksRollPageState extends State<LinksRollPage> {
   List<_Link> links = [
-    _Link('Google', 'https://google.com'),
-    _Link('Yandex', 'https://yandex.ru')
+    _Link('Google', _DataStubs.google),
+    _Link('Yandex', _DataStubs.yandex)
   ];
 
   void _addLink() {
     setState(() {
-      links.add(_Link('Link', 'https://grably.app'));
+      links.add(_Link('Link', _DataStubs.grably));
     });
   }
 
   List<Widget> _links() {
     return links
-        .map((link) => SizedBox(
-              height: 50,
+        .map((url) => SizedBox(
+              height: _Dimensions.rowHeight,
               child: Row(
                 children: <Widget>[
-                  _LinkWidget.name(link),
+                  _LinkWidget.link(url),
                 ],
               ),
             ))
@@ -84,7 +84,7 @@ class _LinkWidget extends StatelessWidget {
       child: Card(
         child: ListTile(
           leading: SizedBox(
-            width: 100,
+            width: _Dimensions.cardWidth,
             child: Row(
               children: <Widget>[
                 const Icon(Icons.link),
@@ -99,9 +99,14 @@ class _LinkWidget extends StatelessWidget {
           ),
           title: InkWell(
             onTap: () => _launchURL(_link),
-            child: Text(
-              _link.url,
-              style: const TextStyle(color: Colors.blue),
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+              ),
+              child: Text(
+                _link.url,
+                style: const TextStyle(color: Colors.blue),
+              ),
             ),
           ),
           // ToDo: Implement tags via https://pub.dev/packages/flutter_tags
@@ -110,7 +115,7 @@ class _LinkWidget extends StatelessWidget {
     );
   }
 
-  const _LinkWidget.name(this._link);
+  const _LinkWidget.link(this._link);
 }
 
 _launchURL(_Link link) async {
@@ -128,4 +133,15 @@ class _Link {
   List<String> tags = [];
 
   _Link(this.title, this.url);
+}
+
+abstract class _Dimensions {
+  static const double rowHeight = 50;
+  static const double cardWidth = 50;
+}
+
+abstract class _DataStubs {
+  static const String google = 'https://google.com';
+  static const String yandex = 'https://yandex.ru';
+  static const String grably = 'https://grably.app';
 }
