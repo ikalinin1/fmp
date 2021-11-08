@@ -22,20 +22,23 @@ class _LinksRollPageState extends State<LinksRollPage> {
 
   void _addLink() {
     setState(() {
-      links.add(_Link('Link', DataStubs.grably));
+      links.add(_Link(
+        'Link',
+        DataStubs.grably,
+      ));
     });
   }
 
   List<Widget> _links() {
     return links
         .map((url) => SizedBox(
-      height: Dimensions.rowHeight,
-      child: Row(
-        children: <Widget>[
-          _LinkWidget.link(url),
-        ],
-      ),
-    ))
+              height: Dimensions.rowHeight,
+              child: Row(
+                children: <Widget>[
+                  _LinkWidget.link(url),
+                ],
+              ),
+            ))
         .toList();
   }
 
@@ -117,5 +120,8 @@ class _Link {
   final String url;
   List<String> tags = [];
 
-  _Link(this.title, this.url);
+  _Link(
+    this.title,
+    this.url,
+  );
 }
