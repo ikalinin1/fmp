@@ -3,7 +3,7 @@ name: Deploy web verison
 on:
   push:
     branches:
-      - task1
+      - homework
 
 jobs:
   build:
