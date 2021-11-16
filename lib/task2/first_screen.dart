@@ -14,7 +14,7 @@ class FirstScreen extends StatelessWidget {
         ),
         body: Center(
           child: MaterialButton(
-              child: const Text("Go next"),
+              child: const Text("Go get next"),
               onPressed: () async {
                 final answer =
                     await Navigator.pushNamed(context, Routes.secondScreen);
